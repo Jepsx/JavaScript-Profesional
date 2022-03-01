@@ -12,3 +12,9 @@ const player = new MediaPlayer({ el: video, plugins: [
 button.onclick = () => player.togglePlay();
 
 mute.onclick = () => player.mute();
+
+if ('serviceWorker' in navigator){
+}
+navigator.serviceWorker.register("/sw.js").catch(error => {
+      console.log(error.message);
+})
