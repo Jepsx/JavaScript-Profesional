@@ -1,4 +1,9 @@
-import Ad from "./Ad";
+interface Ad {
+  imageUrl:string,
+  title:string,
+  body:string,
+  url:string,
+}
 const ALL_ADS: Ad[] = [
     {
       imageUrl:
@@ -73,28 +78,33 @@ const ALL_ADS: Ad[] = [
       url: 'https://platzi.com/cursos/react-router-redux/',
     },
   ];
-export class Ads {
+  class Ads {
     private static instance: Ads;
     private ads: Ad[];
-
-    private constructor(){
+  
+    private constructor() { 
+      this.initAds();
+    }
+  
+    static getInstance() {
+      if (!Ads.instance) {
+        Ads.instance = new Ads();
+      }
+  
+      return Ads.instance;
+    }
+  
+    private initAds() {
+      this.ads = [...ALL_ADS];
+    }
+  
+    getAd() {
+      if (this.ads.length === 0) {
         this.initAds();
+      }
+      return this.ads.pop();
+  
     }
-    static getInstance(){
-        if(!Ads){
-            Ads.instance = new Ads();
-        }
-        return Ads.instance;
-    }
-    
-    private initAds(){
-        this.ads = [...ALL_ADS];
-    }
-    getAd(){
-        if(this.ads.length == 0 ){
-            this.initAds();
-        }
-        return this.ads.pop();
-    }
-}
-export default Ads;
+  }
+  
+  export default Ads;
