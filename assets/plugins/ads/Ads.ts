@@ -1,4 +1,4 @@
-interface Ad {
+export interface Ad {
   imageUrl:string,
   title:string,
   body:string,
